@@ -578,6 +578,13 @@ ul, ol { margin: 0; padding: 0; }
 }
 .contact-card dd a { text-decoration: none; }
 .contact-card dd a:hover { text-decoration: underline; }
+.map-link {
+  display: inline-block;
+  margin-top: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+.map-link::after { content: " \2197"; }
 
 /* Footer ---------------------------------------------------------------- */
 

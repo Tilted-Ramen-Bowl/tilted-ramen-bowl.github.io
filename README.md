@@ -11,7 +11,8 @@ and their employees. Plain HTML and CSS, no build step, hosted on GitHub Pages.
 | `styles.css` | All styling (design tokens at the top of the file) |
 | `404.html` | Custom not-found page |
 | `favicon.svg` | Lantern favicon |
-| `marcus.jpeg`, `marcus-480.jpg` | Partner photo: original (used for link previews) and a 480 px copy used on the page |
+| `marcus.jpeg`, `marcus-480.jpg` | Partner photo: original and a 480 px copy used on the page |
+| `og-image.jpg`, `og-image.html` | Social-media preview image (2400x1260) and the HTML layout it is rendered from |
 | `CNAME` | Custom domain for GitHub Pages (`lantern.tax`) |
 | `.nojekyll` | Tells GitHub Pages to serve files as-is |
 | `robots.txt`, `sitemap.xml` | Search engine hints |
@@ -26,6 +27,19 @@ To change the partner photo, replace `marcus.jpeg` and regenerate the 480 px cop
 ```sh
 sips -Z 480 -s format jpeg -s formatOptions 82 marcus.jpeg --out marcus-480.jpg
 ```
+
+## Regenerating the social preview image
+
+`og-image.html` is a 1200x630 layout. Render it at 2x and convert to a JPEG under 300 KB (WhatsApp's limit):
+
+```sh
+"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new --hide-scrollbars \
+  --window-size=1200,630 --force-device-scale-factor=2 --screenshot=og-image.png "file://$PWD/og-image.html"
+sips -s format jpeg -s formatOptions 82 og-image.png --out og-image.jpg
+```
+
+Chat apps cache previews. After changing the image, share the link with a query string
+(for example `https://lantern.tax/?v=2`) to force a fresh preview, or use Facebook's Sharing Debugger.
 
 ## Local preview
 

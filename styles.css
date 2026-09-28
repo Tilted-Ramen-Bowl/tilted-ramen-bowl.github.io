@@ -262,11 +262,18 @@ ul, ol { margin: 0; padding: 0; }
   position: relative;
   overflow: hidden;
   color: var(--text-on-dark);
-  background:
-    radial-gradient(55% 45% at 50% 105%, rgba(243, 168, 58, 0.28), transparent 65%),
-    linear-gradient(180deg, var(--ink) 0%, var(--ink-2) 100%);
+  background: linear-gradient(180deg, var(--ink) 0%, var(--ink-2) 100%);
   padding-block: clamp(56px, 8vw, 112px) 0;
 }
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(55% 45% at 50% 105%, rgba(243, 168, 58, 0.28), transparent 65%);
+  animation: fade 1.8s ease-out 0.6s both;
+}
+.hero > .container { position: relative; }
 
 .hero-grid {
   display: grid;
@@ -316,37 +323,123 @@ ul, ol { margin: 0; padding: 0; }
 }
 
 .lantern {
-  width: clamp(180px, 40vw, 300px);
+  width: clamp(260px, 36vw, 400px);
   height: auto;
-  filter: drop-shadow(0 0 32px rgba(243, 168, 58, 0.45));
+  overflow: visible;
 }
 
 @media (min-width: 860px) {
-  .hero {
+  .hero { padding-block: clamp(72px, 9vw, 128px); }
+  .hero::before {
     background:
       radial-gradient(45% 60% at 78% 55%, rgba(243, 168, 58, 0.30), transparent 62%),
-      radial-gradient(30% 40% at 78% 55%, rgba(255, 199, 107, 0.16), transparent 60%),
-      linear-gradient(180deg, var(--ink) 0%, var(--ink-2) 100%);
-    padding-block: clamp(72px, 9vw, 128px);
+      radial-gradient(30% 40% at 78% 55%, rgba(255, 199, 107, 0.16), transparent 60%);
   }
   .hero-grid { grid-template-columns: 1.15fr 0.85fr; gap: 56px; }
   .hero-art { align-items: center; min-height: 0; }
 }
 
-/* Flame animation, opt-in to motion only */
-@media (prefers-reduced-motion: no-preference) {
-  .flame { animation: flicker 3.2s ease-in-out infinite; transform-origin: 80px 154px; }
-  .flame-core { animation: flicker 2.4s ease-in-out infinite reverse; transform-origin: 80px 149px; }
-  .halo { animation: breathe 5s ease-in-out infinite; transform-origin: 80px 136px; }
+/* Lantern scene ----------------------------------------------------------
+   Entrance: lantern arrives, flame ignites, light reaches out and reveals the
+   ledger and the path. Then: gentle sway, flame flicker, breathing glow,
+   embers. Static styles are the finished state, so reduced-motion just
+   switches the animations off. */
+
+.lantern .arrive { animation: arrive 1s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+@keyframes arrive { from { opacity: 0; transform: translateY(-10px); } }
+
+.lantern .sway,
+.lantern .reach-sway {
+  transform-origin: 180px 14px;
+  animation: sway 7s ease-in-out 1.2s infinite both;
 }
-@keyframes flicker {
-  0%, 100% { transform: scale(1) translateY(0); opacity: 1; }
-  40% { transform: scale(1.04, 1.08) translateY(-1px); opacity: 0.94; }
-  70% { transform: scale(0.97, 1.02) translateY(0.5px); opacity: 1; }
+@keyframes sway {
+  0%, 100% { transform: rotate(-2deg); }
+  50% { transform: rotate(2deg); }
 }
+
+.lantern .ignite {
+  transform-origin: 180px 184px;
+  animation: ignite 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 0.5s both;
+}
+@keyframes ignite { from { transform: scale(0); } }
+
+.flame-outer, .flame-mid, .flame-core {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+}
+.flame-outer { opacity: 0.85; filter: blur(0.5px); animation: flick-a 1.9s ease-in-out 1.2s infinite; }
+.flame-mid   { animation: flick-b 2.5s ease-in-out 1.2s infinite; }
+.flame-core  { animation: flick-c 1.3s ease-in-out 1.2s infinite; }
+@keyframes flick-a {
+  0%, 100% { transform: scale(1, 1) skewX(0); opacity: 0.85; }
+  30% { transform: scale(1.06, 1.1) skewX(3deg); opacity: 0.95; }
+  60% { transform: scale(0.95, 1.04) skewX(-3deg); opacity: 0.78; }
+  80% { transform: scale(1.03, 0.96) skewX(1deg); opacity: 0.9; }
+}
+@keyframes flick-b {
+  0%, 100% { transform: scale(1, 1) skewX(0); }
+  35% { transform: scale(0.96, 1.07) skewX(-2deg); }
+  70% { transform: scale(1.04, 0.95) skewX(2deg); }
+}
+@keyframes flick-c {
+  0%, 100% { transform: scale(1, 1); opacity: 1; }
+  50% { transform: scale(1.12, 0.9); opacity: 0.85; }
+}
+
+.lantern .halo-in {
+  transform-origin: 180px 166px;
+  animation: halo-in 1.6s cubic-bezier(0.2, 0.7, 0.2, 1) 0.6s both;
+}
+@keyframes halo-in { from { opacity: 0; transform: scale(0.3); } }
+.lantern .halo-wide  { transform-origin: 180px 166px; animation: breathe 6s ease-in-out 2.2s infinite; }
+.lantern .halo-tight { transform-origin: 180px 166px; animation: breathe 4.3s ease-in-out 2.2s infinite reverse; }
 @keyframes breathe {
   0%, 100% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.06); opacity: 0.85; }
+  50% { transform: scale(1.07); opacity: 0.86; }
+}
+
+.lantern .reach-in {
+  transform-origin: 180px 172px;
+  animation: reach-in 1.8s cubic-bezier(0.2, 0.7, 0.2, 1) 0.6s both;
+}
+@keyframes reach-in { from { transform: scale(0.15); } }
+.lantern .reach-breathe { transform-origin: 180px 172px; animation: breathe-reach 6s ease-in-out 2.2s infinite; }
+@keyframes breathe-reach {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.06); }
+}
+
+.lantern .ledger { animation: fade 1.4s ease 0.9s both; }
+@keyframes fade { from { opacity: 0; } }
+.lantern .trail {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+  animation: draw 2s cubic-bezier(0.4, 0, 0.2, 1) 1.2s both;
+}
+@keyframes draw { from { stroke-dashoffset: 1; } }
+.lantern .wp {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: pop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+.lantern .wp:nth-child(1) { animation-delay: 1.9s; }
+.lantern .wp:nth-child(2) { animation-delay: 2.4s; }
+.lantern .wp:nth-child(3) { animation-delay: 2.9s; }
+@keyframes pop { from { transform: scale(0); } }
+
+.lantern .mote {
+  opacity: 0;
+  animation: rise var(--d, 5s) ease-out var(--delay, 0s) infinite;
+}
+@keyframes rise {
+  0% { transform: translate(0, 0); opacity: 0; }
+  12% { opacity: 0.9; }
+  100% { transform: translate(var(--x, 0px), -120px); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lantern *, .page-404 .lantern *, .hero::before { animation: none !important; }
 }
 
 /* Cards ----------------------------------------------------------------- */

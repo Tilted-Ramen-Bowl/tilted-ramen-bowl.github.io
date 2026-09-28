@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex">
+  <title>Lantern Taxes social preview source</title>
+  <!-- Source layout for og-image.jpg. Render at 1200x630 CSS px with a 2x device scale factor. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+  <style>
+    html, body { margin: 0; }
+    body {
+      width: 1200px; height: 630px; overflow: hidden; position: relative;
+      background: #0e1826; color: #f4efe6;
+      font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    .bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(40% 62% at 24% 52%, rgba(243, 168, 58, 0.34), transparent 66%),
+        radial-gradient(26% 40% at 24% 52%, rgba(255, 199, 107, 0.18), transparent 60%),
+        linear-gradient(180deg, #0e1826 0%, #152238 100%);
+    }
+    .ledger {
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(180deg, rgba(244, 239, 230, 0.08) 0 1px, transparent 1px 30px),
+        linear-gradient(90deg, transparent 0 118px, rgba(243, 168, 58, 0.22) 118px 119px, transparent 119px);
+      -webkit-mask-image: radial-gradient(46% 72% at 24% 52%, #000 0%, rgba(0,0,0,0.6) 45%, transparent 72%);
+              mask-image: radial-gradient(46% 72% at 24% 52%, #000 0%, rgba(0,0,0,0.6) 45%, transparent 72%);
+    }
+    .trail {
+      position: absolute; inset: 0; width: 1200px; height: 630px;
+      -webkit-mask-image: radial-gradient(46% 72% at 24% 52%, #000 0%, rgba(0,0,0,0.6) 45%, transparent 72%);
+              mask-image: radial-gradient(46% 72% at 24% 52%, #000 0%, rgba(0,0,0,0.6) 45%, transparent 72%);
+    }
+    .lantern { position: absolute; left: 44px; top: 62px; width: 460px; height: 506px; }
+    .copy { position: absolute; left: 560px; top: 96px; width: 590px; }
+    .eyebrow {
+      font-size: 19px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase;
+      color: #f3a83a; margin: 0 0 20px;
+    }
+    .brand {
+      font-family: "Fraunces", Georgia, serif; font-weight: 600; font-size: 74px; line-height: 1;
+      letter-spacing: -0.015em; color: #fff; margin: 0 0 22px;
+    }
+    .brand span { color: #f3a83a; }
+    .tag {
+      font-family: "Fraunces", Georgia, serif; font-weight: 500; font-size: 38px; line-height: 1.15;
+      color: #f4efe6; margin: 0 0 40px; letter-spacing: -0.01em;
+    }
+    .person { display: flex; align-items: center; gap: 22px; }
+    .person img {
+      width: 108px; height: 108px; border-radius: 50%; object-fit: cover; flex: none;
+      box-shadow: 0 0 0 4px #0e1826, 0 0 0 6px rgba(243, 168, 58, 0.75), 0 0 44px rgba(243, 168, 58, 0.35);
+    }
+    .person .name { font-size: 27px; font-weight: 600; color: #fff; line-height: 1.2; }
+    .person .role { font-size: 18px; color: #a9b4c6; margin-top: 6px; line-height: 1.35; }
+    .url {
+      position: absolute; right: 60px; bottom: 40px;
+      font-size: 22px; font-weight: 600; color: #ffc76b; letter-spacing: 0.02em;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .url::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: #f3a83a; }
+  </style>
+</head>
+<body>
+  <div class="bg"></div>
+  <div class="ledger"></div>
+  <svg class="trail" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+    <path d="M40 560 C120 550, 190 520, 260 490 S400 420, 470 360 S600 240, 700 160" fill="none" stroke="#ffc76b" stroke-opacity=".55" stroke-width="2" stroke-linecap="round"/>
+    <g fill="#ffc76b"><circle cx="260" cy="490" r="4.5"/><circle cx="470" cy="360" r="4.5"/><circle cx="700" cy="160" r="4.5"/></g>
+  </svg>
+
+  <svg class="lantern" viewBox="40 0 280 260" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <radialGradient id="glass" cx="50%" cy="60%" r="62%">
+        <stop offset="0" stop-color="#fff3d1"/><stop offset=".45" stop-color="#ffc76b"/><stop offset="1" stop-color="#e08a1c"/>
+      </radialGradient>
+      <linearGradient id="metal" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stop-color="#2a3a57"/><stop offset=".5" stop-color="#465a80"/><stop offset="1" stop-color="#22314b"/>
+      </linearGradient>
+      <radialGradient id="haloWide" cx="50%" cy="50%" r="50%">
+        <stop offset="0" stop-color="#f3a83a" stop-opacity=".36"/><stop offset=".5" stop-color="#f3a83a" stop-opacity=".12"/><stop offset="1" stop-color="#f3a83a" stop-opacity="0"/>
+      </radialGradient>
+      <radialGradient id="haloTight" cx="50%" cy="50%" r="50%">
+        <stop offset="0" stop-color="#ffc76b" stop-opacity=".6"/><stop offset="1" stop-color="#ffc76b" stop-opacity="0"/>
+      </radialGradient>
+    </defs>
+    <circle cx="180" cy="166" r="130" fill="url(#haloWide)"/>
+    <circle cx="180" cy="166" r="64" fill="url(#haloTight)"/>
+    <g transform="rotate(-2 180 14)">
+      <circle cx="180" cy="14" r="5" fill="none" stroke="#465a80" stroke-width="3"/>
+      <path d="M180 19V52" stroke="#3d4f70" stroke-width="3" stroke-dasharray="5 3" stroke-linecap="round"/>
+      <path d="M156 76 A24 24 0 0 1 204 76" fill="none" stroke="url(#metal)" stroke-width="6" stroke-linecap="round"/>
+      <path d="M140 98 L220 98 L204 76 L156 76 Z" fill="url(#metal)"/>
+      <path d="M172 82h4v9h-4z M178 82h4v9h-4z M184 82h4v9h-4z" fill="#0e1826" opacity=".45"/>
+      <path d="M158 98 H202 L198 93 H162 Z" fill="#ffc76b" opacity=".28"/>
+      <rect x="158" y="98" width="44" height="8" fill="#22314b"/>
+      <rect x="140" y="106" width="80" height="112" rx="12" fill="url(#metal)"/>
+      <rect x="150" y="116" width="60" height="92" rx="7" fill="url(#glass)"/>
+      <rect x="154" y="121" width="5" height="82" rx="2.5" fill="#fff" opacity=".14"/>
+      <rect x="168" y="116" width="3" height="92" fill="#22314b" opacity=".4"/>
+      <rect x="189" y="116" width="3" height="92" fill="#22314b" opacity=".4"/>
+      <rect x="175" y="182" width="10" height="6" rx="1.5" fill="#22314b"/>
+      <path d="M180 140 C167 155, 165 172, 180 186 C195 172, 193 155, 180 140Z" fill="#ffb347" opacity=".85"/>
+      <path d="M180 148 C171 159, 170 173, 180 183 C190 173, 189 159, 180 148Z" fill="#fff0c2"/>
+      <path d="M180 160 C176 167, 176 175, 180 180 C184 175, 184 167, 180 160Z" fill="#ffd27a"/>
+      <rect x="150" y="215" width="60" height="3" fill="#ffc76b" opacity=".35"/>
+      <rect x="146" y="218" width="68" height="10" rx="4" fill="#22314b"/>
+      <rect x="156" y="228" width="48" height="8" rx="3" fill="#465a80"/>
+    </g>
+    <g fill="#ffd27a"><circle cx="171" cy="52" r="1.6" opacity=".8"/><circle cx="188" cy="38" r="1.2" opacity=".6"/><circle cx="178" cy="24" r="1.4" opacity=".45"/><circle cx="194" cy="8" r="1.1" opacity=".3"/></g>
+  </svg>
+
+  <div class="copy">
+    <p class="eyebrow">Startup tax advisory &middot; Singapore</p>
+    <h1 class="brand">Lantern <span>Taxes</span></h1>
+    <p class="tag">Your light through<br>startup tax.</p>
+    <div class="person">
+      <img src="marcus-480.jpg" alt="">
+      <div>
+        <div class="name">Marcus Koh</div>
+        <div class="role">Partner &middot; CA (Singapore)<br>Accredited Tax Advisor (Income Tax), SCTP</div>
+      </div>
+    </div>
+  </div>
+  <div class="url">lantern.tax</div>
+</body>
+</html>

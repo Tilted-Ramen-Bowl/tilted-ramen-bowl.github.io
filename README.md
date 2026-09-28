@@ -11,6 +11,7 @@ and their employees. Plain HTML and CSS, no build step, hosted on GitHub Pages.
 | `styles.css` | All styling (design tokens at the top of the file) |
 | `404.html` | Custom not-found page |
 | `favicon.svg` | Lantern favicon |
+| `marcus.jpeg`, `marcus-480.jpg` | Partner photo: original (used for link previews) and a 480 px copy used on the page |
 | `CNAME` | Custom domain for GitHub Pages (`lantern.tax`) |
 | `.nojekyll` | Tells GitHub Pages to serve files as-is |
 | `robots.txt`, `sitemap.xml` | Search engine hints |
@@ -20,11 +21,10 @@ and their employees. Plain HTML and CSS, no build step, hosted on GitHub Pages.
 Open `index.html` in any editor. Copy lives directly in the HTML. Colours, fonts and spacing are
 CSS custom properties in the `:root` block at the top of `styles.css`.
 
-To add a photo of Marcus, drop an image into the repo and replace the `portrait-initials` block in
-the About section with:
+To change the partner photo, replace `marcus.jpeg` and regenerate the 480 px copy:
 
-```html
-<img class="portrait" src="marcus-koh.jpg" alt="Marcus Koh">
+```sh
+sips -Z 480 -s format jpeg -s formatOptions 82 marcus.jpeg --out marcus-480.jpg
 ```
 
 ## Local preview
@@ -42,7 +42,8 @@ Pushing to `main` publishes.
 
 ## DNS for lantern.tax
 
-At the DNS provider for `lantern.tax`, set:
+The Pages custom domain is the apex `lantern.tax`. `www.lantern.tax` redirects to it once both
+records below resolve to GitHub. At the DNS provider for `lantern.tax`, set:
 
 | Type | Name | Value |
 | --- | --- | --- |

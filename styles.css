@@ -122,6 +122,8 @@ ul, ol { margin: 0; padding: 0; }
 .section-dark .intro { color: var(--muted-on-dark); }
 .section-dark a { color: var(--amber-2); }
 .section-dark a:hover { color: #fff; }
+.section-dark .btn-primary, .section-dark .btn-primary:hover { color: var(--ink); }
+.section-dark .btn-ghost { color: var(--text-on-dark); }
 
 .section-head {
   max-width: 680px;
